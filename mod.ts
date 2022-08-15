@@ -88,13 +88,15 @@ await Deno.writeTextFile(
 
 // .github
 
+const ci = (await Confirm.prompt("Run tests in CI?"))
+    ? "https://gist.githubusercontent.com/Jamalam360/0375a36378c9d45b74f93b7d4269177f/raw/4b5b127633ef332acf6ebc4f1f3fd9078a36cde2/ci.yaml"
+    : "https://gist.githubusercontent.com/Jamalam360/1c5ac4902204b370e64e7af835ab9b07/raw/1a2fe1e36a964be651b2511a026bb5dd4d881a4e/ci.yaml";
+
 await ensureDir(`${dir}/.github`);
 await ensureDir(`${dir}/.github/workflows`);
 await Deno.writeTextFile(
     `${dir}/.github/workflows/ci.yml`,
-    await fetch(
-        "https://gist.githubusercontent.com/Jamalam360/1c5ac4902204b370e64e7af835ab9b07/raw/1a2fe1e36a964be651b2511a026bb5dd4d881a4e/ci.yaml",
-    ).then((res) => res.text()),
+    await fetch(ci).then((res) => res.text()),
 );
 
 // README.md
