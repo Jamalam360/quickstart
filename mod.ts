@@ -125,4 +125,11 @@ const commit = Deno.run({
 
 await commit.status();
 
+const main = Deno.run({
+    cmd: ["git", "branch", "-M", "main"],
+    cwd: dir,
+});
+
+await main.status();
+
 console.log("Initialization complete.");
