@@ -95,7 +95,7 @@ const ci = (await Confirm.prompt("Run tests in CI?"))
 await ensureDir(`${dir}/.github`);
 await ensureDir(`${dir}/.github/workflows`);
 await Deno.writeTextFile(
-    `${dir}/.github/workflows/ci.yml`,
+    `${dir}/.github/workflows/ci.yaml`,
     await fetch(ci).then((res) => res.text()),
 );
 
